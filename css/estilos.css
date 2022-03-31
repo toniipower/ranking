@@ -1,0 +1,16 @@
+.centrado{
+
+    text-align: center;
+}
+
+body{
+
+    width:90%;
+    margin: 0 auto;
+}
+
+.vertical_center{
+    display: flex;
+    flex-direction: column;/*para centrar verticalmente la info*/
+    justify-content: center;
+}
