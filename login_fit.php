@@ -45,7 +45,6 @@
   </div>
   <div>
   
-
   <script>
     // FUNCION DE VALIDACION DE ERRORES EN FORMULARIO
     // Example starter JavaScript for disabling form submissions if there are invalid fields
