@@ -15,8 +15,8 @@ $usuarios = cargar_usuarios();
     <link href="css/estilos.css" rel="stylesheet">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    
 
     <!-- Asi se incluye un archivo php dentro de otro archivo php -->
    
@@ -25,6 +25,7 @@ $usuarios = cargar_usuarios();
 </head>
 <body>
 
+   
 <?php include("header_fit.php"); ?>
 
     <div class="row justify-content-md-center">
@@ -32,22 +33,25 @@ $usuarios = cargar_usuarios();
         <h1 class="centrado"> Listado de Usuarios</h1>
         <a href="add_usuario.php" class="btn btn-primary col-2" role="button"> Añadir usuario</a>
         <table class="table table-striped table-hover">
+
             <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Fecha de nacimiento</th>
-                    <th scope="col">Población</th>
-                    <th scope="col">Provincia</th>
-                    <th scope="col">Estado</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Población</th>
+                        <th scope="col">Provincia</th>
+                        <th scope="col">Estado</th>
+                    </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuarios as $usuario){ /* var_dump($usuario["id_usuario"]) */?>
+                <?php foreach ($usuarios as $usuario){?>
+                <tr>
                     
-                <tr>                            
-                    <td><?php echo $usuario["nombre_usuario"]; ?> </td> <!--para incorporar el contenido de la base de datos a nuestra tabla-->
+                    
+                    
+                    <td><?php echo $usuario["nombre_usuario"]; ?> </td> <!--para incorporar el contenido de la base de datos a nuestra tabla, se hace de esta manera.-->
                     <td><?php echo $usuario["apellido1_usuario"]. " " . $usuario["apellido2_usuario"]; ?></td>
                     <td><?php echo $usuario["email_usuario"]; ?></td>
                     <td><?php echo $usuario["fecha_nacimiento"]; ?></td>
@@ -56,35 +60,40 @@ $usuarios = cargar_usuarios();
                     <td><?php echo $usuario["estado_usuario"]; ?></td>
                     <td> 
                         <a href= "editar_usuario.php?id_usuario=<?php echo $usuario["id_usuario"];?>" class="btn btn-warning bi bi-pencil" role="button"></a>
-                        <a href="#" id="borrarbtn" data-bs-toggle="modal" data-bs-target="#confirmBorrar<?php echo $usuario['id_usuario'];?>" title="Borrar usuario" class="btn btn-primary">Borrar</a>
+                        <!-- <a href= "incidencias_alumno.php?id_alumno=<?php /* echo $alumno["id_alumno"]; */?>" class="btn btn-success bi bi-card-list" role="button"></a> -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target= "#modelId<?php echo $usuario["id_usuario"];?>" role="button" class="btn btn-primary"> <?php if($usuario["estado_usuario"]==1){echo "Desactivar";} else{ echo "Activar";}
+                               ?> </button>
+                        
                     </td>
                 </tr>
                     
-                <!-- Modal -->
-                <div class="modal fade" id="confirmBorrar<?php echo $usuario["id_usuario"];?>" tabindex="-1" aria-labelledby="confirmBorrarLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="confirmBorrarLabel">Confirmación de borrado</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 <!-- Modal -->
+                 <div class="modal fade" id="modelId<?php echo $usuario['id_usuario'];?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content delete_modal">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><!--<img class="modal_image" src="img/warning.png">-->  Advertencia </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                       ¿Está seguro de que desea desactivar el usuario <span><?php echo $usuario["nombre_usuario"];?></span>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                                        <a href= "actualizar_estado_usuario.php?id_usuario=<?php echo $usuario['id_usuario']?>&estado_usuario=<?php echo $usuario['estado_usuario'];?>" class="btn btn-danger" role="button">Ok</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            ¿Está seguro de que quiere borrar al usuario <strong><em><?php echo $usuario["nombre_usuario"]?></em></strong>?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="borrar_usuario(<?php echo $usuario['id_usuario'];?>);">Borrar</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <?php
-                }
-                ?>            
+                    <?php
+                    }
+                    ?>
+            
             </tbody>
+
+
         </table>
     </div>
-    <script src="js/scripts.js"></script>
 </body>
 
 </html>
