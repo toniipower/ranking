@@ -3,7 +3,7 @@ session_start();
 include("funciones_fit.php");
 comprobar_sesion();
 $datos_usuario = cargar_datos_usuario($_SESSION["id_usuario"]); //parametro que vamos a meter para que busque al usuario por el email.
-//var_dump($datos_usuario);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

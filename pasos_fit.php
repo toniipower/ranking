@@ -3,9 +3,9 @@ include("funciones_fit.php");
 $datos_usuario = cargar_datos_usuario($_SESSION["id_usuario"]);
 comprobar_sesion();
 $pasos = cargar_pasos();
-/* var_dump($pasos); */
 
-var_dump($_SESSION); 
+
+ 
 if ($_POST) {
   $_SESSION["num"];
 }

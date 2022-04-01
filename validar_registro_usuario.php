@@ -3,7 +3,7 @@ include("funciones_fit.php");
 
 if($_POST){
 
-    var_dump($_POST);
+    
 
     $nombre_usuario = $_POST["nombre_usuario"];
     $email_usuario = $_POST["email_usuario"];
@@ -16,7 +16,7 @@ if($_POST){
     /* $id_usuario= $_POST["id_usuario"];*/
     //$pasos = $_POST["id_pasos"]; 
 
-    var_dump($provincia);
+   
 
 
     //Generar token

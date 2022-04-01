@@ -44,16 +44,16 @@ if($_POST){
         header("location:index.php");
     }
 
-    //var_dump($consulta_login->num_rows);
+    
 
     else{
 
         $query_login_error =  "SELECT estado_usuario FROM usuarios WHERE email_usuario = '$email_usuario' AND password_usuario = '$password_usuario'";        
         $consulta_login_error = $conexion_login->consultar($query_login_error);
         $resultado_login_error= $consulta_login_error->fetch_all(MYSQLI_ASSOC);
-        //var_dump($resultado_login_error);
+        
         echo "<br>";
-        //var_dump($conexion_login->contar_resultados());
+        
         if($conexion_login->contar_resultados()== 0){
             echo "<h1 style= 'text-align: center;'>El email y el passwordd no coinciden. <a href='login_fit.php'>Volver a la página de login<a/></h1>";
         }

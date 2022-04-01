@@ -3,7 +3,7 @@ include("funciones_fit.php");
 
 if($_POST){
 
-    //var_dump($_POST);
+    
 
     $nombre_usuario= $_POST["nombre_usuario"];
     $apellido1_usuario= $_POST["apellido1_usuario"];

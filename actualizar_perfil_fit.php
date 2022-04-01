@@ -6,7 +6,7 @@ include("funciones_fit.php");?>
 
 if($_POST){
 
-    //var_dump($_POST);
+   
     $email_usuario= $_POST["email_usuario"];
     $id_usuario = $_POST["id_usuario"];
     $password_usuario= $_POST["password_usuario"];    
